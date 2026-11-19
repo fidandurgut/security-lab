@@ -7,5 +7,6 @@ app = Flask(__name__)
 def get_payment():
     payment_id = request.args.get("id")
     conn = sqlite3.connect("payments.db")
-    query = f"SELECT * FROM payments WHERE id = '{payment_id}'"
-    return str(conn.execute(query).fetchall())
+    query = "SELECT * FROM payments WHERE id = ?"
+    return str(conn.execute(query, (payment_id,)).fetchall())
+
